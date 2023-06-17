@@ -1,9 +1,13 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useMatch } from 'react-router-dom';
 import logo from '../images/logo/logo.svg';
 
-function Header({ email, main, login, reg }) {
+function Header({ email }) {
   const navigate = useNavigate();
+
+  const mainMatch = useMatch('/main');
+  const loginMatch = useMatch('/sign-in');
+  const regMatch = useMatch('/sign-up');
 
   function handleOut() {
     localStorage.removeItem('jwt');
@@ -21,8 +25,8 @@ function Header({ email, main, login, reg }) {
   return (
     <header className="header">
       <img src={logo} className="header__logo" alt="Логотип Место" />
-      <div className='heder__info'>
-        {main && (
+      <div className='heаder__info'>
+        {mainMatch && (
           <>
             <p className="header__email">{email}</p>
             <Link to="/sign-in" className='header__link' onClick={handleOut}>
@@ -31,13 +35,13 @@ function Header({ email, main, login, reg }) {
           </>
         )}
 
-        {login && (
+        {loginMatch && (
           <Link to="/sign-up" className='header__link' onClick={handleRegister}>
             Регистрация
           </Link>
         )}
 
-        {reg && (
+        {regMatch && (
           <Link to="/sign-in" className='header__link' onClick={handleLogin}>
             Вход
           </Link>
@@ -48,3 +52,4 @@ function Header({ email, main, login, reg }) {
 }
 
 export default Header;
+
