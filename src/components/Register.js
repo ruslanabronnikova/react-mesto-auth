@@ -28,7 +28,8 @@ function Register(props) {
             placeholder="Email"
             minLength="2"
             maxLength="40"
-            required 
+            required
+            value={formValue.email} 
             onChange={(e) => setFormValue({ ...formValue, email: e.target.value })}  
             />
           <input type='password'
@@ -38,7 +39,8 @@ function Register(props) {
             placeholder="Пароль"
             minLength="2"
             maxLength="40"
-            required 
+            required
+            value={formValue.password}  
             onChange={(e) => setFormValue({ ...formValue, password: e.target.value })}
             />
 
